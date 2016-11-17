@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :customer, only: [:index]
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
+  get 'angular_test', to: 'angular_test#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
