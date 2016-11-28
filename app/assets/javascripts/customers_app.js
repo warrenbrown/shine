@@ -8,17 +8,19 @@ app.controller("CustomerSearchController", [
 
     $scope.customers = [];
     $scope.search = function(searchTerm) {
-      if (searchTerm < 3) {
+      $scope.loading = true;
+      if (searchTerm.length < 3) {
         return;
       }
-
       $http.get("/customers.json",
                 { "params": { "keywords": searchTerm, "page": page } }
       ).success(
         function(data,status,headers,config) {
           $scope.customers = data;
+          $scope.loading = false;
       }).error(
         function(data,status,headers,config) {
+          $scope.loading = false;
           alert("There was a problem: " + status);
         });
     }
